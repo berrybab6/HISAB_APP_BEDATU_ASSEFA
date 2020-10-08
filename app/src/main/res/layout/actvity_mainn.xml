@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:paddingLeft="20dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFF"
+        tools:context=".MainActivity">
+    <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+
+
+            android:text="Foods"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <CheckBox
+                android:text="Fetira"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:id="@+id/FetiraCheckbox"
+                android:layout_height="wrap_content"/>
+        <CheckBox
+                android:layout_weight="1"
+                android:text="Ful Medamas"
+                android:id="@+id/fullMedamesCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <CheckBox
+                android:text="Chechebsa"
+                android:layout_weight="1"
+                android:id="@+id/ChechebsaCheckbox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+        <CheckBox
+                android:layout_weight="1"
+                android:text="Tibs Firfir"
+                android:id="@+id/TibsCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+            android:layout_marginTop="20dp"
+            android:text="Meal Type"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    <Spinner android:layout_width="wrap_content"
+             android:layout_marginTop="20dp"
+             android:id="@+id/meal_type_spinner"
+
+             android:layout_height="wrap_content"/>
+
+
+
+    <TextView
+            android:layout_marginTop="20dp"
+            android:text="Total People: "
+            android:id="@+id/total_people_tv"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"/>
+
+
+    <SeekBar
+            android:paddingTop="5dp"
+            android:id="@+id/pBar"
+
+            android:layout_width="match_parent"
+            android:min="0"
+
+            android:max="20"
+            android:progress="1"
+
+
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_marginTop="20dp"
+            android:text="Waiiter's Name"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <EditText android:layout_width="match_parent"
+              android:id="@+id/waiter_name_etv"
+              android:hint="Full Name"
+              android:background="@null"
+              android:textColor="#000"
+              android:layout_marginTop="10dp"
+              android:layout_marginRight="20dp"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="20dp" />
+    <View
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:layout_marginTop="30dp"
+                  android:layout_height="wrap_content">
+        <Button
+                android:text="Clear All"
+                android:id="@+id/clear_all_btn"
+                android:layout_width="wrap_content"
+                android:padding="20dp"
+                android:background="#f0f0f0"
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:text="Calculate"
+                android:id="@+id/calculate_btn"
+                android:layout_width="wrap_content"
+                android:padding="20dp"
+                android:background="#f0f0f0"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>
