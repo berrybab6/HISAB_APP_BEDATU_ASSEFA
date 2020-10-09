@@ -1,15 +1,12 @@
 package mish.mish.assefa.com.hisab
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.actvity_mainn.*
 import mish.mish.assefa.com.hisab.R.*
 import mish.mish.assefa.com.hisab.data.Controller
-import mish.mish.assefa.com.hisab.data.food.Food
 import mish.mish.assefa.com.hisab.data.food.FoodTypes
-import mish.mish.assefa.com.hisab.data.meal.Meal
 import mish.mish.assefa.com.hisab.data.meal.MealType
 import mish.mish.assefa.com.hisab.framework.base.BaseActivity
 import mish.mish.assefa.com.hisab.framework.util.logD
@@ -169,13 +166,12 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
         return totalPrice
     }
 
-    fun totalDiscount():Double{
-        var cal =calculator()
-        var totalDiscount=1040.0-cal
-        return totalDiscount
+    private fun totalDiscount():Double{
+        val cal =calculator()
+        return 1040.0-cal
     }
 
-    fun clearAll(){
+    private fun clearAll(){
         for(food in controller.foods) {
             controller.removeFoods(food.type)
         }
