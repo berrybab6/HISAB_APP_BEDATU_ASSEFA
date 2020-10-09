@@ -12,12 +12,13 @@ import mish.mish.assefa.com.hisab.data.food.FoodTypes
 import mish.mish.assefa.com.hisab.data.meal.Meal
 import mish.mish.assefa.com.hisab.data.meal.MealType
 import mish.mish.assefa.com.hisab.framework.base.BaseActivity
+import mish.mish.assefa.com.hisab.framework.util.logD
 
 class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
-
+  var totalPeople=0
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
 
@@ -74,8 +75,38 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
         }*/
 
         calculate_btn.setOnClickListener {
-            //controller.calculate()
-            //Toast.makeText(this,"${controller.calculate()}",Toast.LENGTH_LONG)
+            if(waiter_name_etv.text.isNotEmpty()){
+            var total =calculator()
+
+                var a=""
+                for (food in controller.foods){
+                    a+="${food.type}          ${food.price}\n"
+                }
+            Toast.makeText(this,"""Ordered Foods    price
+                |$a
+                |
+                |Meal Type :  ${controller.meal.meal}
+                |Total People:  $totalPeople
+                |
+                |Total Discount: ${totalDiscount()} birr
+                |Waiter's Name:   ${waiter_name_etv.text}
+                |Calculated Price is:   $total birr
+
+
+            """.trimMargin(),Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"$total",Toast.LENGTH_LONG)
+            logD("Main Activty",
+                "$total")}
+            else
+            {
+                Toast.makeText(this,"Enter Waiter's Name ",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        clear_all_btn.setOnClickListener {
+            clearAll()
+            Toast.makeText(this,"History Cleared ,Nothing To show",Toast.LENGTH_LONG).show()
+
         }
 //Meal Type Spinner
         meal_type_spinner.onItemSelectedListener=this
@@ -100,6 +131,7 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                  total_people_tv.text="Total People: $progress"
                 controller.addPeopleDiscount(progress)
+                totalPeople=progress
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -121,5 +153,44 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
 
     }
 
+
+    fun calculator():Double{
+             var totalPrice=0.0
+        for (food in controller.foods){
+            totalPrice+=food.price
+        }
+
+        totalPrice*=if(totalPeople>4){
+            (1-controller.meal.discount)*(1-controller.peopleDiscount)
+        }else{
+            1-controller.meal.discount
+        }
+
+        return totalPrice
+    }
+
+    fun totalDiscount():Double{
+        var cal =calculator()
+        var totalDiscount=1040.0-cal
+        return totalDiscount
+    }
+
+    fun clearAll(){
+        for(food in controller.foods) {
+            controller.removeFoods(food.type)
+        }
+        controller.addMealType(MealType.Breakfast)
+
+        fetira.isChecked=false
+        chechebsa.isChecked=false
+        tibs.isChecked=false
+       fullMedamesCheckBox.isChecked=false
+        controller.peopleDiscount=0.0
+        progress.progress=1
+        waiter_name_etv.setText("")
+        total_people_tv.text="Total People : "
+        logD("Ac","Cleared")
+
+    }
 
 }

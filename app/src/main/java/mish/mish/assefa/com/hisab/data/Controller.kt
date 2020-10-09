@@ -17,8 +17,8 @@ class Controller(
     fun addPeopleDiscount(people:Int){
         peopleDiscount=when(people){
             in 0..4->0.0
-            in 5..14->0.3
-            else->0.5
+            in 5..14->0.03
+            else->0.05
         }
         log()
     }
