@@ -49,7 +49,7 @@ class Controller(
         var cal =calculator(totalPeople)
         var foodTotal=0.0
         for (food in foods){
-            foodTotal=food.price
+            foodTotal+=food.price
         }
             cal-=cal-foodTotal
         return cal
@@ -59,6 +59,7 @@ class Controller(
         var totalPrice=0.0
         for (food in foods){
             totalPrice+=food.price
+
         }
 
         totalPrice*=if(totalPeople>4){
