@@ -67,13 +67,11 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
         tibs.setOnCheckedChangeListener(this)
         chechebsa.setOnCheckedChangeListener(this)
 
-        /*if (this::fetira.isInitialized){
 
-        }*/
 
         calculate_btn.setOnClickListener {
             if(waiter_name_etv.text.isNotEmpty()){
-            var total =calculator()
+            val total =controller.calculator(totalPeople)
 
                 var a=""
                 for (food in controller.foods){
@@ -85,7 +83,7 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
                 |Meal Type :  ${controller.meal.meal}
                 |Total People:  $totalPeople
                 |
-                |Total Discount: ${totalDiscount()} birr
+                |Total Discount: ${controller.totalDiscount(totalPeople)} birr
                 |Waiter's Name:   ${waiter_name_etv.text}
                 |Calculated Price is:   $total birr
 
@@ -150,26 +148,6 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
 
     }
 
-
-    fun calculator():Double{
-             var totalPrice=0.0
-        for (food in controller.foods){
-            totalPrice+=food.price
-        }
-
-        totalPrice*=if(totalPeople>4){
-            (1-controller.meal.discount)*(1-controller.peopleDiscount)
-        }else{
-            1-controller.meal.discount
-        }
-
-        return totalPrice
-    }
-
-    private fun totalDiscount():Double{
-        val cal =calculator()
-        return 1040.0-cal
-    }
 
     private fun clearAll(){
         for(food in controller.foods) {

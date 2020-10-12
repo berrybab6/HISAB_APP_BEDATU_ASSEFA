@@ -44,22 +44,34 @@ class Controller(
         log()
 
     }
-/*
-    fun calculate():Double{
-        var totalPrice=0.0
 
+    fun totalDiscount(totalPeople: Int):Double{
+        var cal =calculator(totalPeople)
+        var foodTotal=0.0
         for (food in foods){
-           totalPrice+=food.price
+            foodTotal=food.price
         }
-        totalPrice *= if (peopleDiscount>0.0){
-            peopleDiscount * meal.discount
-        } else{
-            meal.discount
+            cal-=cal-foodTotal
+        return cal
+    }
+    fun calculator(totalPeople:Int):Double{
+       // var totalPeople=0
+        var totalPrice=0.0
+        for (food in foods){
+            totalPrice+=food.price
         }
-        log()
-        return totalPrice
 
-    }*/
+        totalPrice*=if(totalPeople>4){
+            (1-meal.discount)*(1-peopleDiscount)
+        }else{
+            1-meal.discount
+        }
+
+        return totalPrice
+    }
+
+
+
     private fun log(){
         d("Foods:$foods")
         d("Meal: $meal")
