@@ -51,7 +51,7 @@ class Controller(
         for (food in foods){
             foodTotal+=food.price
         }
-            cal-=cal-foodTotal
+            cal-=foodTotal
         return cal
     }
     fun calculator(totalPeople:Int):Double{
