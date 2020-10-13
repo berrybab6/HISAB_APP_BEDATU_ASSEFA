@@ -1,16 +1,19 @@
 package mish.mish.assefa.com.hisab
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.actvity_mainn.*
 import mish.mish.assefa.com.hisab.R.*
 import mish.mish.assefa.com.hisab.data.Controller
+import mish.mish.assefa.com.hisab.data.food.Food
 import mish.mish.assefa.com.hisab.data.food.FoodTypes
 import mish.mish.assefa.com.hisab.data.meal.MealType
 import mish.mish.assefa.com.hisab.framework.base.BaseActivity
 import mish.mish.assefa.com.hisab.framework.util.logD
 
+const val SUMMARY=100
 class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -33,6 +36,16 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
 
     private lateinit var progress:SeekBar
     private lateinit var spinner:Spinner
+
+
+    private fun foodToString(food:FoodTypes):String{
+        return when(food){
+            FoodTypes.TibsFirfir->"Tibs"
+            FoodTypes.Chechebsa->"Chechebsa"
+            FoodTypes.FullMedames->"FullMedames"
+            FoodTypes.Fetira->"Fetira"
+        }
+    }
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
 
         if (buttonView==null) return
@@ -70,26 +83,30 @@ class MainActivity : BaseActivity(),CompoundButton.OnCheckedChangeListener, Adap
 
 
         calculate_btn.setOnClickListener {
-            if(waiter_name_etv.text.isNotEmpty()){
-            val total =controller.calculator(totalPeople)
-
-                var a=""
-                for (food in controller.foods){
-                    a+="${food.type}          ${food.price}\n"
-                }
-            Toast.makeText(this,"""Ordered Foods    price
-                |$a
-                |
-                |Meal Type :  ${controller.meal.meal}
-                |Total People:  $totalPeople
-                |
-                |Total Discount: ${controller.totalDiscount(totalPeople)} birr
-                |Waiter's Name:   ${waiter_name_etv.text}
-                |Calculated Price is:   $total birr
+            val total =controller.calculator()
+            val totalDiscount=controller.totalDiscount()
+            val foods=controller.foods
+            val foodList= foods.map { food: Food ->
+                food.type
+            }.joinToString(",") { type: FoodTypes ->
+                foodToString(type)
+            }
 
 
-            """.trimMargin(),Toast.LENGTH_LONG).show()
-            //Toast.makeText(this,"$total",Toast.LENGTH_LONG)
+            val waiter=waiter_name_etv.text.toString()
+            val meal=(controller.meal.meal).toString()
+            if(waiter.isNotEmpty()){
+
+
+                val intent= Intent(this@MainActivity,Summary::class.java)
+                intent.putExtra("total",total)
+                intent.putExtra("totalDiscount",totalDiscount)
+              intent.putExtra("foods",foodList)
+                intent.putExtra("mealType",meal)
+                intent.putExtra("Waiter",waiter)
+                startActivity(intent)
+
+
             logD("Main Activty",
                 "$total")}
             else

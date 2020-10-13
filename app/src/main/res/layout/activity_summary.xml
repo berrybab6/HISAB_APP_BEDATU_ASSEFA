@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="24dp"
+              tools:context=".Summary">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/coloGreen"
+            android:text="Selected foods" />
+
+    <TextView
+            android:id="@+id/summarySelectedFoodsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Chechebsa, Fetira"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/coloGreen"
+            android:layout_height="wrap_content"
+            android:text="Meal type" />
+
+    <TextView
+            android:id="@+id/summaryMealTypeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Breakfast"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/coloGreen"
+            android:layout_height="wrap_content"
+            android:text="Total discount" />
+
+    <TextView
+            android:id="@+id/summaryTotalDiscountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="15%"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/coloGreen"
+            android:layout_height="wrap_content"
+            android:text="Served by" />
+
+    <TextView
+            android:id="@+id/summaryServedByLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Abebe Kebede"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/coloGreen"
+            android:layout_height="wrap_content"
+            android:text="Total cost" />
+
+    <TextView
+            android:id="@+id/summaryTotalCostLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="780.00 ETB"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
+
+<Button
+        android:text="Back"
+        android:id="@+id/back_to_main"
+        android:layout_gravity="center|bottom"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

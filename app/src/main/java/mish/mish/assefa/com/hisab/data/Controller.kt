@@ -1,7 +1,6 @@
 package mish.mish.assefa.com.hisab.data
 
 
-import android.util.Log.d
 import mish.mish.assefa.com.hisab.data.food.Food
 import mish.mish.assefa.com.hisab.data.food.FoodTypes
 import mish.mish.assefa.com.hisab.data.meal.Meal
@@ -45,30 +44,18 @@ class Controller(
 
     }
 
-    fun totalDiscount(totalPeople: Int):Double{
-        var cal =calculator(totalPeople)
-        var foodTotal=0.0
-        for (food in foods){
-            foodTotal+=food.price
-        }
-            cal-=foodTotal
-        return cal
+    fun totalDiscount():Double{
+        val total=getTotal()
+        return (meal.discount+ peopleDiscount)*total
     }
-    fun calculator(totalPeople:Int):Double{
+   private fun getTotal():Double{
+        return foods.sumByDouble { it.price }
+    }
+    fun calculator():Double{
        // var totalPeople=0
-        var totalPrice=0.0
-        for (food in foods){
-            totalPrice+=food.price
-
-        }
-
-        totalPrice*=if(totalPeople>4){
-            (1-meal.discount)*(1-peopleDiscount)
-        }else{
-            1-meal.discount
-        }
-
-        return totalPrice
+        val totalPrice=getTotal()
+        val totalDiscount=totalDiscount()
+        return totalPrice-totalDiscount
     }
 
 
